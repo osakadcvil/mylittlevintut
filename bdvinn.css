@@ -26,13 +26,13 @@ body {
     height: 200px; 
     
     /* Warna badan amplop: PINK LEBIH MUDA */
-    background: #ffe0e6; /* Diubah dari #ffc0cb */
+    background: #ffe0e6; 
     border-radius: 5px;
     
     /* Box Shadow BARU: Lebih Halus dan Elegan */
     box-shadow: 
-        0 1px 3px rgba(0, 0, 0, 0.12), /* Bayangan kecil */
-        0 12px 24px rgba(0, 0, 0, 0.1); /* Bayangan besar dan tersebar */
+        0 1px 3px rgba(0, 0, 0, 0.12), 
+        0 12px 24px rgba(0, 0, 0, 0.1); 
         
     cursor: pointer;
     transition: transform 0.8s ease-in-out; 
@@ -61,7 +61,7 @@ body {
     left: 0;
     clip-path: polygon(0 0, 100% 0, 50% 100%); 
     
-    /* Gradient Biru Soft (Tidak Berubah) */
+    /* Gradient Biru Soft */
     background: linear-gradient(135deg, #a7c7e7, #77aadd); 
     
     transform-origin: top;
@@ -73,8 +73,8 @@ body {
     width: 50%;
     height: 100%;
     top: 0;
-    /* Gradient BARU: Menggunakan Pink Muda dan Pink Sangat Muda untuk Blend */
-    background: linear-gradient(to top right, #ffe0e6, #fff5f7); /* Diubah dari #ffc0cb, #ffb3c1 */
+    /* Gradient Pink Muda */
+    background: linear-gradient(to top right, #ffe0e6, #fff5f7); 
     z-index: 1;
 }
 .left-flap {
@@ -87,7 +87,7 @@ body {
     clip-path: polygon(0 0, 100% 50%, 0 100%); 
     transform-origin: right;
     /* Gradient dibalik */
-    background: linear-gradient(to top left, #ffe0e6, #fff5f7); /* Diubah dari #ffc0cb, #ffb3c1 */
+    background: linear-gradient(to top left, #ffe0e6, #fff5f7); 
 }
 
 /* Badan Amplop (dasar) */
@@ -95,7 +95,7 @@ body {
     width: 100%;
     height: 100%;
     /* Menggunakan Pink Paling Muda */
-    background-color: #ffe0e6; /* Diubah dari #ffc0cb */
+    background-color: #ffe0e6; 
     position: absolute;
     top: 0;
     left: 0;
@@ -197,7 +197,43 @@ body {
     margin: 20px 0;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    
+    /* PENTING: Untuk posisi selotip */
+    position: relative; 
+    z-index: 1; 
 }
+
+/* --- Efek Selotip di Sudut Foto --- */
+.card-image::before,
+.card-image::after {
+    content: '';
+    position: absolute;
+    /* Warna selotip transparan/putih kusam */
+    background-color: rgba(255, 255, 255, 0.7); 
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Garis tipis untuk batas */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+    z-index: 2; 
+    border-radius: 2px;
+}
+
+/* Sudut Kiri Atas */
+.card-image::before {
+    width: 30px; 
+    height: 15px; 
+    top: -8px; 
+    left: -8px;
+    transform: rotate(-10deg); 
+}
+
+/* Sudut Kanan Bawah */
+.card-image::after {
+    width: 30px; 
+    height: 15px; 
+    bottom: -8px;
+    right: -8px;
+    transform: rotate(10deg); 
+}
+/* ------------------------------------- */
 
 #closeCard {
     background-color: #3498db;
