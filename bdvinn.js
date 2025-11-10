@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Kamu bisa unduh musik non-copyright atau gunakan dari koleksimu.
 
         if (!birthdayAudio) { // Hanya buat objek audio sekali
-            birthdayAudio = new Audio('assets/vintutt.mp3'); 
+            birthdayAudio = new Audio('vintutt.mp3'); 
             birthdayAudio.loop = true; // Loop musik
         }
         birthdayAudio.volume = 0.5; // Atur volume
@@ -91,4 +91,5 @@ document.addEventListener('DOMContentLoaded', () => {
             birthdayAudio.currentTime = 0; // Kembali ke awal lagu
         }
     }
+
 });
