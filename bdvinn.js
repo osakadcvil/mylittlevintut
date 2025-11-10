@@ -1,20 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- AMBIL SEMUA ELEMEN ---
     const envelope = document.getElementById('envelope');
-    const card = document.getElementById('birthdayCard'); // ID kartu diubah
-    const openCakeBtn = document.getElementById('openCake'); // Tombol diganti
-    const cakeContainer = document.getElementById('cakeContainer'); // Wadah Kue
-    const candles = document.querySelectorAll('.candle'); // Semua Lilin
-    const finalMessage = document.getElementById('finalMessage'); // Pesan Hadiah
-    const finalCloseBtn = document.getElementById('finalClose'); // Tombol Tutup Kue
+    // ID Kartu dikembalikan ke 'card'
+    const card = document.getElementById('card'); 
+    // ID tombol dikembalikan ke 'closeCard'
+    const closeCardButton = document.getElementById('closeCard'); 
 
-    // --- VARIABEL AUDIO & KUE ---
-    let birthdayAudio; // Variabel global untuk audio
-    let litCandles = candles.length; // Hitungan lilin yang menyala (Awalnya 3)
-
-    // ==========================================================
-    // 1. LOGIKA UTAMA: MEMBUKA AMPLOP DAN KARTU
-    // ==========================================================
+    // --- LOGIKA UTAMA: MEMBUKA AMPLOP DAN KARTU ---
     envelope.addEventListener('click', () => {
         // Tambahkan kelas 'open' untuk menganimasikan amplop
         envelope.classList.add('open');
@@ -22,86 +14,27 @@ document.addEventListener('DOMContentLoaded', () => {
         // Setelah animasi amplop selesai, tampilkan kartu
         setTimeout(() => {
             card.classList.add('show');
-            playConfetti(); // Tembakkan confetti saat kartu muncul
-            playBirthdayMusic(); 
+            playConfetti(); // Panggil confetti
+            playBirthdayMusic(); // Panggil musik
         }, 800); 
     });
 
-    // ==========================================================
-    // 2. LOGIKA KARTU -> KUE
-    // ==========================================================
-    if (openCakeBtn) {
-        openCakeBtn.addEventListener('click', function() {
-            // 1. Sembunyikan Kartu
+    // --- LOGIKA MENUTUP KARTU ---
+    if (closeCardButton) {
+        closeCardButton.addEventListener('click', () => {
             card.classList.remove('show');
-            stopConfetti(); // Hentikan confetti dari kartu
-            
-            // 2. Tampilkan Kue
-            setTimeout(() => {
-                cakeContainer.classList.add('show');
-            }, 500); // Tunda sebentar agar transisi terlihat mulus
-        });
-    }
-
-
-    // ==========================================================
-    // 3. LOGIKA KUE INTERAKTIF (MEMADAMKAN LILIN)
-    // ==========================================================
-    candles.forEach(candle => {
-        candle.addEventListener('click', function() {
-            const flame = this.querySelector('.flame');
-            
-            // Hanya memproses jika api masih menyala
-            if (flame && flame.style.opacity !== '0') {
-                flame.style.opacity = '0'; // Matikan api
-                litCandles--; // Kurangi hitungan lilin yang menyala
-                
-                // Panggil pengecekan hadiah
-                checkAllCandlesOut();
-            }
-        });
-    });
-
-    // --- Pengecekan Hadiah (Opsi 3) ---
-    function checkAllCandlesOut() {
-        if (litCandles === 0) {
-            console.log("Semua lilin sudah mati! Tampilkan hadiah.");
-            
-            // 1. Tampilkan Pesan Hadiah
-            setTimeout(() => {
-                finalMessage.classList.add('show');
-            }, 500); 
-            
-            // 2. Tembakkan Confetti Hadiah!
-            playFinalConfetti(); 
-        }
-    }
-
-
-    // ==========================================================
-    // 4. LOGIKA MENUTUP KUE (SELESAI)
-    // ==========================================================
-    if (finalCloseBtn) {
-        finalCloseBtn.addEventListener('click', function() {
-            cakeContainer.classList.remove('show');
-            stopConfetti(); // Bersihkan sisa confetti
-
-            // Opsional: Hentikan musik di sini jika Anda ingin lagu berhenti setelah semua interaksi selesai
-            stopBirthdayMusic(); 
-            
-            // Opsional: Animasi amplop kembali tertutup
+            // Setelah kartu ditutup, animasikan amplop kembali tertutup
             setTimeout(() => {
                 envelope.classList.remove('open');
-            }, 300);
+                stopBirthdayMusic(); // Hentikan musik saat kartu ditutup
+                stopConfetti(); // Hentikan Confetti yang sedang berjalan
+            }, 300); 
         });
     }
 
-
-    // ==========================================================
     // --- FUNGSI CONFETTI & AUDIO ---
-    // ==========================================================
-
-    // Confetti saat kartu terbuka (awal)
+    
+    // Confetti saat kartu terbuka
     function playConfetti() {
         if (window.confetti) {
             
@@ -120,36 +53,20 @@ document.addEventListener('DOMContentLoaded', () => {
             window.confetti({ particleCount: 75, angle: 120, spread: 55, origin: { x: 1, y: 0.7 }, colors: ['#ffc0cb', '#ffffff', '#ff69b4'] });
 
         } else {
-            console.warn("Confetti library not loaded."); 
+            console.warn("Confetti library not loaded. Check index.html <script> tag."); 
         }
     }
     
-    // Confetti saat lilin padam (hadiah)
-    function playFinalConfetti() {
-        if (window.confetti) {
-            window.confetti({
-                particleCount: 150,
-                spread: 360,
-                ticks: 150,
-                gravity: 0.8,
-                decay: 0.94,
-                scalar: 0.8,
-                origin: { y: 0.6 } // Dari area kue
-            });
-        }
-    }
-
     function stopConfetti() {
         if (window.confetti) {
             window.confetti.reset();
         }
     }
 
-
     // --- FUNGSI MUSIK Ulang Tahun ---
+    let birthdayAudio; // Variabel global untuk audio
     function playBirthdayMusic() {
         if (!birthdayAudio) { 
-            // Path audio
             birthdayAudio = new Audio('vintutt.mp3'); 
             birthdayAudio.loop = true; 
         }
