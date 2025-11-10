@@ -25,8 +25,8 @@ body {
     width: 300px; 
     height: 200px; 
     
-    /* Warna badan amplop: Pink Soft */
-    background: #ffc0cb; 
+    /* Warna badan amplop: PINK LEBIH MUDA */
+    background: #ffe0e6; /* Diubah dari #ffc0cb */
     border-radius: 5px;
     
     /* Box Shadow BARU: Lebih Halus dan Elegan */
@@ -61,7 +61,7 @@ body {
     left: 0;
     clip-path: polygon(0 0, 100% 0, 50% 100%); 
     
-    /* Gradient BARU: Biru Soft */
+    /* Gradient Biru Soft (Tidak Berubah) */
     background: linear-gradient(135deg, #a7c7e7, #77aadd); 
     
     transform-origin: top;
@@ -73,8 +73,8 @@ body {
     width: 50%;
     height: 100%;
     top: 0;
-    /* Gradient BARU: Pink Soft */
-    background: linear-gradient(to top right, #ffc0cb, #ffb3c1);
+    /* Gradient BARU: Menggunakan Pink Muda dan Pink Sangat Muda untuk Blend */
+    background: linear-gradient(to top right, #ffe0e6, #fff5f7); /* Diubah dari #ffc0cb, #ffb3c1 */
     z-index: 1;
 }
 .left-flap {
@@ -87,15 +87,15 @@ body {
     clip-path: polygon(0 0, 100% 50%, 0 100%); 
     transform-origin: right;
     /* Gradient dibalik */
-    background: linear-gradient(to top left, #ffc0cb, #ffb3c1);
+    background: linear-gradient(to top left, #ffe0e6, #fff5f7); /* Diubah dari #ffc0cb, #ffb3c1 */
 }
 
 /* Badan Amplop (dasar) */
 .body-flap {
     width: 100%;
     height: 100%;
-    /* Menggunakan Pink Soft */
-    background-color: #ffc0cb;
+    /* Menggunakan Pink Paling Muda */
+    background-color: #ffe0e6; /* Diubah dari #ffc0cb */
     position: absolute;
     top: 0;
     left: 0;
