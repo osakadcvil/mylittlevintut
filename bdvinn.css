@@ -7,7 +7,7 @@ body {
     /* Latar belakang soft */
     background-color: #f8f8ff; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: auto; 
+    overflow: hidden; 
 }
 
 .container {
@@ -268,4 +268,5 @@ body {
         font-size: 1em;
     }
 }
+
 
