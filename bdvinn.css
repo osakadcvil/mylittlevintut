@@ -2,18 +2,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 100vh; 
     margin: 0;
+    
     /* Latar belakang soft */
     background-color: #f8f8ff; 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Dikembalikan ke standar */
     overflow: hidden; 
 }
 
 .container {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 100vh; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +37,7 @@ body {
         
     cursor: pointer;
     transition: transform 0.8s ease-in-out; 
-    perspective: 1000px; 
+    perspective: 1500px; /* Transisi yang lebih halus */
     z-index: 10;
 }
 
@@ -236,7 +237,8 @@ body {
 /* ------------------------------------- */
 
 #closeCard {
-    background-color: #3498db;
+    /* Warna tombol diubah agar lebih serasi (Lavender/Soft Purple) */
+    background-color: #8E8CED;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -248,25 +250,32 @@ body {
 }
 
 #closeCard:hover {
-    background-color: #2980b9;
+    /* Warna hover disesuaikan */
+    background-color: #7A7ADB;
 }
 
-/* Responsif untuk layar kecil */
+/* --- Responsif untuk layar kecil (PENYEMPURNAAN) --- */
 @media (max-width: 600px) {
     .envelope {
-        width: 250px;
-        height: 170px;
+        /* Diperbesar sedikit untuk layar sentuh */
+        width: 280px; 
+        height: 180px;
     }
     .card {
         width: 90%;
-        padding: 20px;
+        /* Padding dikurangi */
+        padding: 15px; 
     }
     .card h1 {
-        font-size: 2em;
+        /* Ukuran font disesuaikan */
+        font-size: 1.8em; 
     }
     .card p {
         font-size: 1em;
     }
+    
+    #closeCard {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
 }
-
-
