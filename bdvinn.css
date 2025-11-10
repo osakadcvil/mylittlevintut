@@ -4,9 +4,10 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-color: #f0f0f0; /* Warna latar belakang */
+    /* Latar belakang soft */
+    background-color: #f8f8ff; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: hidden; /* Penting untuk menyembunyikan scrollbar jika ada confetti */
+    overflow: hidden; 
 }
 
 .container {
@@ -21,25 +22,32 @@ body {
 /* --- Gaya Amplop --- */
 .envelope {
     position: relative;
-    width: 300px; /* Lebar amplop */
-    height: 200px; /* Tinggi amplop */
-    background-color: #f7e7a3; /* Warna badan amplop */
+    width: 300px; 
+    height: 200px; 
+    
+    /* Warna badan amplop: Pink Soft */
+    background: #ffc0cb; 
     border-radius: 5px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    
+    /* Box Shadow BARU: Lebih Halus dan Elegan */
+    box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.12), /* Bayangan kecil */
+        0 12px 24px rgba(0, 0, 0, 0.1); /* Bayangan besar dan tersebar */
+        
     cursor: pointer;
-    transition: transform 0.8s ease-in-out; /* Untuk efek scaling saat diklik */
-    perspective: 1000px; /* Untuk animasi 3D */
+    transition: transform 0.8s ease-in-out; 
+    perspective: 1000px; 
     z-index: 10;
 }
 
 .envelope:hover {
-    transform: translateY(-10px); /* Efek melayang saat di-hover */
+    transform: translateY(-10px); 
 }
 
-/* Flap Atas */
+/* Flap Atas (Tutup Amplop) */
 .flap {
     position: absolute;
-    background-color: #f4d985; /* Warna tutup amplop */
+    /* Properti dasar */
     border-bottom: 2px solid #e0c87a;
     transform-origin: top;
     transition: transform 0.8s ease-in-out;
@@ -51,8 +59,11 @@ body {
     height: 60%;
     top: 0;
     left: 0;
-    clip-path: polygon(0 0, 100% 0, 50% 100%); /* Bentuk segitiga */
-    background-color: #d1b96d; /* Warna tutup lebih gelap */
+    clip-path: polygon(0 0, 100% 0, 50% 100%); 
+    
+    /* Gradient BARU: Biru Soft */
+    background: linear-gradient(135deg, #a7c7e7, #77aadd); 
+    
     transform-origin: top;
     z-index: 2;
 }
@@ -62,41 +73,46 @@ body {
     width: 50%;
     height: 100%;
     top: 0;
-    background-color: #f4d985;
-    clip-path: polygon(100% 0, 0 50%, 100% 100%); /* Bentuk segitiga samping */
+    /* Gradient BARU: Pink Soft */
+    background: linear-gradient(to top right, #ffc0cb, #ffb3c1);
     z-index: 1;
 }
 .left-flap {
     left: 0;
+    clip-path: polygon(100% 0, 0 50%, 100% 100%); 
     transform-origin: left;
 }
 .right-flap {
     right: 0;
-    clip-path: polygon(0 0, 100% 50%, 0 100%); /* Bentuk segitiga samping lainnya */
+    clip-path: polygon(0 0, 100% 50%, 0 100%); 
     transform-origin: right;
+    /* Gradient dibalik */
+    background: linear-gradient(to top left, #ffc0cb, #ffb3c1);
 }
 
 /* Badan Amplop (dasar) */
 .body-flap {
     width: 100%;
     height: 100%;
-    background-color: #f7e7a3;
+    /* Menggunakan Pink Soft */
+    background-color: #ffc0cb;
     position: absolute;
     top: 0;
     left: 0;
     border-radius: 5px;
-    z-index: 0; /* Di bawah semua flap */
+    z-index: 0; 
 }
 
 
 /* --- Animasi Amplop Terbuka --- */
 .envelope.open .top-flap {
-    transform: rotateX(180deg); /* Memutar tutup ke belakang */
-    background-color: #f4d985; /* Kembali ke warna awal saat terbuka */
+    transform: rotateX(180deg); 
+    /* Gunakan warna solid untuk transisi agar terlihat lebih bersih saat berputar */
+    background-color: #a7c7e7; 
 }
 
 .envelope.open .heart {
-    transform: scale(0); /* Sembunyikan hati saat terbuka */
+    transform: scale(0); 
     opacity: 0;
 }
 
@@ -106,21 +122,21 @@ body {
     position: absolute;
     width: 30px;
     height: 30px;
-    background-color: #e74c3c; /* Warna merah hati */
+    background-color: #ff69b4; /* Deep Pink */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
     border-radius: 50% 50% 0 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
-    z-index: 3; /* Di atas flap */
+    z-index: 3; 
 }
 .heart::before, .heart::after {
     content: '';
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: #e74c3c;
+    background-color: #ff69b4;
     border-radius: 50%;
 }
 .heart::before {
@@ -138,24 +154,28 @@ body {
     background-color: #ffffff;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     text-align: center;
-    opacity: 0; /* Awalnya tersembunyi */
-    transform: scale(0.5); /* Mulai dari kecil */
+    opacity: 0; 
+    transform: scale(0.5); 
     transition: all 0.8s ease-out;
-    pointer-events: none; /* Agar tidak bisa diklik saat tersembunyi */
-    z-index: 20; /* Di atas amplop */
-    max-height: 80vh; /* Batasi tinggi kartu agar tidak terlalu besar */
-    overflow-y: auto; /* Aktifkan scroll jika konten terlalu panjang */
+    pointer-events: none; 
+    z-index: 20; 
+    max-height: 80vh; 
+    overflow-y: auto; 
     display: flex;
     flex-direction: column;
     align-items: center;
+    
+    /* Box Shadow BARU: Terangkat dan Tebal */
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.1), 
+        0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 .card.show {
     opacity: 1;
     transform: scale(1);
-    pointer-events: auto; /* Bisa diklik saat muncul */
+    pointer-events: auto; 
 }
 
 .card h1 {
@@ -211,19 +231,4 @@ body {
     .card p {
         font-size: 1em;
     }
-/* --- Confetti CSS (Opsional) --- */
-@keyframes fall {
-    0% { transform: translateY(-100vh) rotateZ(0deg); opacity: 1; }
-    100% { transform: translateY(100vh) rotateZ(720deg); opacity: 0; }
-}
-
-@keyframes rotate {
-    0% { transform: rotateZ(0deg); }
-    100% { transform: rotateZ(360deg); }
-}
-
-.confetti {
-    animation-timing-function: cubic-bezier(0.1, 1, 0.5, 1);
-    animation-fill-mode: forwards;
-}
 }
